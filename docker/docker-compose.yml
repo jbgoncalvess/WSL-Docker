@@ -1,4 +1,3 @@
-version: '3'
 services:
   # Container de aplicação 1
   web1:
