@@ -23,10 +23,10 @@ services:
    # Container de aplicação 3
   web3:
     build: .
-    container_name: flask_web2
+    container_name: flask_web3
     restart: always
     ports:
-      - "5002:5000"
+      - "5003:5000"
     networks:
       - flask_network
 
