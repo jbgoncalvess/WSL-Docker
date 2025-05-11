@@ -16,7 +16,7 @@ COPY app.py app.py
 RUN pip install -r requirements.txt
 
 # Expor a porta que a aplicação vai utilizar
-EXPOSE 5000
+EXPOSE 7777
 
 # Comando para executar a aplicação
 CMD ["python", "app.py"]
