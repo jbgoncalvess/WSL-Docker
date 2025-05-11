@@ -1,17 +1,18 @@
-# Define a imagem base Debian mais recente
-FROM debian:latest
+# Utilizar uma imagem de python slim, para otimizar o desempenho.
+FROM python:3.9-slim
 
-# Define o mantenedor da imagem
-LABEL maintainer="DevOps Unesc Pos"
+# Definir o diretório de trabalho dentro do contêiner
+WORKDIR /app
 
-# Atualiza os pacotes do sistema para evitar problemas durante a instalação
-RUN apt-get update && apt-get upgrade -y
+# Copiar os arquivos locais para o diretório de trabalho do contêiner
+COPY requirements.txt requirements.txt
+COPY app.py app.py
 
-# Instala o NGINX para atuar como servidor web dentro do contêiner
-RUN apt-get install nginx -y
+# Instalar as dependências
+RUN pip install -r requirements.txt
 
-# Expõe a porta 80 para acesso ao servidor (mapear as portas depois - p 8010:80)
-EXPOSE 80
+# Expor a porta que a aplicação vai utilizar
+EXPOSE 5000
 
-# Mantém o NGINX rodando no foreground para que o contêiner não seja encerrado
-CMD [ "nginx", "-g", "daemon off;" ]
+# Comando para executar a aplicação
+CMD ["python", "app.py"]
